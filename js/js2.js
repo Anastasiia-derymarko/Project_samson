@@ -44,23 +44,24 @@ function addToCart(){
 	else{
 		cart[id]++; //если такой товар есть - увеличиваем
 	}
-	showMiniCart();//выводит что в корзине
+	// showMiniCart();//выводит что в корзине
 	saveCart(); // сохранение что в корзине
+	sumCart();
 	// console.log(cart);
 
 };
 
 // отображает что взяли и сколько 
-function showMiniCart(){
-	var out = '';
-	for (var key in cart){
-		out+= key + '-----' + cart[key]+'<br>';
-	}
+// function showMiniCart(){
+// 	var out = '';
+// 	for (var key in cart){
+// 		out+= key + '-----' + cart[key]+'<br>';
+// 	}
 	
-	$('.mini-basket').html(out);
+// 	$('.mini-basket').html(out);
 	
-	sumCart();
-}
+// 	sumCart();
+// }
 // сохранение что в корзине localStorage
 function saveCart() {
 	localStorage.setItem('cart', JSON.stringify(cart));
@@ -73,7 +74,7 @@ function loadCart() {
 	if (localStorage.getItem('cart')){
 		//если есть - расшифровываю и записываю в переменую cart
 		cart=JSON.parse(localStorage.getItem('cart'));
-		showMiniCart();
+		// showMiniCart();
 		// console.log(cart);
 		sumCart();
 	}
@@ -93,11 +94,9 @@ var t = 0;
 
 	for (var key in cart){
 		t=t+cart[key]
-			console.log(t);
-	
+			// console.log(t);
 	}
 
 	$('.sumCart').html(t);
 
 }
-sumCart();
