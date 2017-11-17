@@ -22,14 +22,15 @@ function showCart(){
 		  	$.getJSON("js/product.json", function (data){
 		    
 		    var product = data;
+
 		    var out = '';
-			    for ( var id in cart){
-			      out+=`          
+			    for (var id in cart){
+				      out+=`          
 			             <tr>
 			                <td><button class="z-depth-1 cyan white-text bold del-product" data-id="${id}" >x</button></td>
 			                <td>
 			                
-			                 <img src="${product[id].img}">
+			                 <img src="${product[id].images}">
 			                 <span>${product[id].name}</span>
 			                </td>
 			                <td>
@@ -43,6 +44,7 @@ function showCart(){
 		
 
 			}
+
 			$('.tbody').html(out);
 			$('.del-product').on('click', delProduct);
 			$('.removeProduct').on('click', removeProduct);
@@ -116,14 +118,43 @@ function isEnpty(object){
 	if(object.hasOwnProperty(key)) return true;
 	return false;	 
 }
+function sendEmail (){
+	var aname = $('#ename').val();
+	var aphone = $('#ephone').val();
+	var email = $('#email').val();
+
+	if(aname!='' && aphone!='' && email!=''){
+		if(isEnpty(cart)){
+			$.post(
+				"js/core/mail.php",
+				{	
+					"aphone" : aphone,
+					"email"  : email,
+					"aname" : aname,
+					"cart" : cart
+				},
+				function (data){
+					console.log(data);
+				}
+			);
+		}
+		else{
+			alert('корзина пуста')
+		}
+	}
+	else{
+		alert('заполни поля')
+	}
+
+}	
+
 
 $(document).ready(function(){
   loadCart();
+  $('.send-button').on('click', sendEmail); //отправить письмо с заказом
 
 });
 
-
-    
  
 // function f1(){
 // 	var t = $('.sum');

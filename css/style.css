@@ -9,6 +9,7 @@
 	min-width: 200px;
 	text-align: center;
 	margin-right: 11.25px;
+	border: none;
 }
 .send-button span {
 	padding-right: 5px;

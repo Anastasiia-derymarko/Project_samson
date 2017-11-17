@@ -15,7 +15,7 @@ function productOut(data){
 		out+=`	
 		<div class="col l6">
 			<div class="card-product valign-wrapper"> 
-	    		<img src="${data[key].img}">
+	    		<img src="${data[key].images}">
 	        		<div class="col l8">
 		       			<p class="light-blue-text">${data[key].name}</p>     
 		    			<p><span class="grey-text text-lighten-1">Страна: </span>${data[key].country}</p>        
@@ -67,6 +67,17 @@ function saveCart() {
 	localStorage.setItem('cart', JSON.stringify(cart));
 
 }
+function sumCart(){
+var t = 0;
+
+	for (var key in cart){
+		t=t+cart[key]
+			// console.log(t);
+	}
+
+	$('.sumCart').html(t);
+
+}
 
 
 function loadCart() {
@@ -89,14 +100,3 @@ $(document).ready(function(){
 
 //  количество товара в корзине
 
-function sumCart(){
-var t = 0;
-
-	for (var key in cart){
-		t=t+cart[key]
-			// console.log(t);
-	}
-
-	$('.sumCart').html(t);
-
-}
