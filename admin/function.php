@@ -2,10 +2,10 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "eshop";
+$dbname = "project_samson";
 
 function connect(){
-    $conn = mysqli_connect("localhost", "root", "ghj", "eshop");
+    $conn = mysqli_connect("localhost", "root", "root", "project_samson");
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
@@ -15,7 +15,7 @@ function connect(){
 function init(){
     //вывожу список товаров
     $conn = connect();
-    $sql = "SELECT * FROM goods";
+    $sql = "SELECT * FROM product";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
